@@ -168,8 +168,29 @@ function setupContactForm() {
       return;
     }
 
-    feedback.textContent = "Thanks for reaching out. I will get back to you soon.";
-    form.reset();
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    feedback.textContent = "Sending message...";
+
+    fetch("/.netlify/functions/send-email", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+      .then(async (response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        feedback.textContent = "Message sent successfully. I will get back to you soon.";
+        form.reset();
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        feedback.textContent = "Unable to send message right now. Please email siddarth.rajeswari@gmail.com.";
+      });
   });
 }
 
