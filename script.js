@@ -14,8 +14,7 @@ const skills = [
   { name: "CSS3", level: 92 },
   { name: "JavaScript", level: 88 },
   { name: "Java", level: 80 },
-  { name: "Git & GitHub", level: 86 },
-  { name: "Responsive Design", level: 90 }
+  { name: "Git & GitHub", level: 86 }
 ];
 
 const aboutTech = ["HTML5", "CSS3", "JavaScript", "Java", "Git", "GitHub", "VS Code", "REST APIs"];
